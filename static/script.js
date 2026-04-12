@@ -1,5 +1,3 @@
-const API = "http://127.0.0.1:5000";
-
 let chart;
 let lineChart;
 let totalRequests = 0;
@@ -8,7 +6,7 @@ let selectedServer = null;
 
 // 🚀 SEND REQUEST
 function sendRequest() {
-    fetch(`${API}/request`)
+    fetch(`/request`)
         .then(res => res.json())
         .then(data => {
 
@@ -19,12 +17,13 @@ function sendRequest() {
 
             getServers();
             getLogs();
-        });
+        })
+        .catch(err => console.error("Request error:", err));
 }
 
 // 📊 GET SERVERS
 function getServers() {
-    fetch(`${API}/servers`)
+    fetch(`/servers`)
         .then(res => res.json())
         .then(data => {
 
@@ -48,12 +47,13 @@ function getServers() {
             document.getElementById("servers").innerHTML = output;
 
             updateChart(data);
-        });
+        })
+        .catch(err => console.error("Server fetch error:", err));
 }
 
 // 📜 LOGS
 function getLogs() {
-    fetch(`${API}/logs`)
+    fetch(`/logs`)
         .then(res => res.json())
         .then(data => {
             let output = "";
@@ -61,7 +61,8 @@ function getLogs() {
                 output += `<div>${log.server} → ${log.load} (Req: ${log.requests})</div>`;
             });
             document.getElementById("logs").innerHTML = output;
-        });
+        })
+        .catch(err => console.error("Logs fetch error:", err));
 }
 
 // 📊 BAR GRAPH
@@ -100,7 +101,7 @@ function updateLineChart() {
 
     const labels = history.map((_, i) => `T${i+1}`);
     const avgLoads = history.map(step =>
-        step.reduce((a,b) => a+b, 0) / step.length
+        step.reduce((a, b) => a + b, 0) / step.length
     );
 
     if (lineChart) {
