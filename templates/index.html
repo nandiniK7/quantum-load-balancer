@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quantum Load Balancer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>⚛️ Quantum Load Balancer</h1>
+    <p class="subtitle">Real-Time Intelligent Traffic Dashboard</p>
+
+    <!-- 🔥 STATS -->
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Total Requests</h3>
+            <p id="totalRequests">0</p>
+        </div>
+    </div>
+
+    <!-- 🔥 BUTTON -->
+    <div class="controls">
+        <button onclick="sendRequest()">Send Request</button>
+    </div>
+
+    <div class="grid">
+
+        <!-- 🔥 BAR CHART -->
+        <div class="card">
+            <h2>📊 Server Load</h2>
+            <canvas id="chart"></canvas>
+        </div>
+
+        <!-- 🔥 LINE CHART -->
+        <div class="card">
+            <h2>📈 Load Trend</h2>
+            <canvas id="lineChart"></canvas>
+        </div>
+
+        <!-- 🔥 SERVERS -->
+        <div class="card">
+            <h2>🖥 Servers</h2>
+            <div id="servers"></div>
+        </div>
+
+        <!-- 🔥 LOGS -->
+        <div class="card">
+            <h2>📜 Logs</h2>
+            <div id="logs"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
